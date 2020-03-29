@@ -10,14 +10,15 @@ alpha_1 = 159;      %motor constant 1 (voltage-to-force) (Newtons)
 alpha_2 = -22.5;    %%motor constant 2 (electrical resistance-to-force) (Newtons*second/meters)
 g = 9.81;           %gravitational constant (meters/second^2)
 
-%bounds
+% Bounds
 x_bound = 0.5;      %bound due to finite rail length (meters)
 x_1_bound = 5;      %bound due to limited velocity of the cart (meters/seconds)
 u_bound = 0.2;      %bound due to limited velocity of motor (meters/seconds)
 
-%initial conditions
-state0=zeros(2,1);
-state0_1=zeros(2,1);
+% Initial conditions
+
+state0= zeros(2,1);
+state0_1= zeros(2,1);
 state0(1) = 0;      %initial position x of cart (meters)
 state0(2) = pi;     %initial angle phi of pendulum (radians)
 state0_1(1) = 0;    %initial linear velocity x_1 of cart (meters/seconds)
