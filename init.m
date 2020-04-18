@@ -1,6 +1,10 @@
 %initialization of model parameters
 
-global m_p m_c l_p alpha_1 alpha_2 g x_bound x_1_bound u_bound state0 state0_1;
+global Ts Duration m_p m_c l_p alpha_1 alpha_2 g x_bound x_1_bound u_bound state0 state0_1;
+
+%Time parameters
+Ts = 0.1;           %Sampling time (seconds)
+Duration = 5;      %Simulation time (seconds)
 
 %structural parameters
 m_p = 0.175;        %mass of pendulum (kilograms)
