@@ -11,4 +11,4 @@ init;
 %get optimal trajectory
 [x_optimal_History, u_optimal_History]= get_optimal_trajectory();
 
-plot_trajectory(xHistory, uHistory);
+plot_trajectory(x_optimal_History, u_optimal_History);
