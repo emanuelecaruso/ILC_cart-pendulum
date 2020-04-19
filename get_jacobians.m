@@ -1,4 +1,8 @@
-function [A,B] = get_jacobians(z,z_dot,theta,theta_dot,u)
+function [A,B] = get_jacobians(x,u)
+
+z_dot=x(2);
+theta=x(3);
+theta_dot=x(4);
 
 global alpha_1 alpha_2 m_p m_c l_p g;
 
