@@ -81,7 +81,7 @@ for ct = 1:(Duration/Ts)
     
     waitbar(ct*Ts/20,hbar);
 end
-
+uHistory=[uHistory(2:length(uHistory)) 0];
 
 close(hbar);
 

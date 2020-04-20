@@ -1,7 +1,6 @@
 function [F,d0] = get_lifted_repr(xHistory,uHistory,x0_dev)
 
-global Ts Duration;
-N=Duration/Ts;      %number of timesteps
+N=size(xHistory,2);      %number of timesteps
 
 %get jacobians
 A=zeros(4,4,N);

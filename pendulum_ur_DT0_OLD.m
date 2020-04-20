@@ -17,11 +17,12 @@ function xk1 = pendulum_ur_DT0(xk, uk, Ts)
 %#codegen
 
 % Repeat application of Euler method sampled at Ts/M.
-
-delta = Ts;
-
-xk1 = xk + delta*pendulum_ur_CT0(xk,uk);
-
+M = 10;
+delta = Ts/M;
+xk1 = xk;
+for ct=1:M
+    xk1 = xk1 + delta*pendulum_ur_CT0(xk1,uk);
+end
 % Note that we choose the Euler method (first oder Runge-Kutta method)
 % because it is more efficient for plant with non-stiff ODEs.  You can
 % choose other ODE solvers such as ode23, ode45 for better accuracy or

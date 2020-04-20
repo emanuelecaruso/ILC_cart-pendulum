@@ -1,0 +1,41 @@
+if ~mpcchecktoolboxinstalled('optim')
+    disp('Optimization Toolbox is required to run this example.')
+    return
+end
+
+%% main script
+
+%initialize parameters
+init;
+
+%get optimal trajectory
+[x_optimal_History, u_optimal_History]= get_optimal_trajectory();
+
+%get Matrices for lifted representation x=F*u+d0
+[F,d0]=get_lifted_repr(x_optimal_History,u_optimal_History,[0;0;-0.001;0]);
+
+x0=x_optimal_History(:,1);
+u0=u_optimal_History(:,1);
+x1=x_optimal_History(:,2);
+u1=u_optimal_History(:,2);
+x2=x_optimal_History(:,3);
+u2=u_optimal_History(:,3);
+[A0,B0]=get_jacobians(x0,u0);
+[A1,B1]=get_jacobians(x1,u1);
+[A2,B2]=get_jacobians(x2,u2);
+
+udev_History=zeros(size(u_optimal_History));
+
+%get xdev_History
+xdev_History=reshape(F*transpose(udev_History)+d0,size(x_optimal_History));
+plot_trajectory(x_optimal_History, u_optimal_History);
+plot_trajectory(xdev_History, u_optimal_History);
+
+% x_2=B0*u0+A0*x0
+% xdev_History(:,2)
+% 
+% x_3=(A1*B0*u0+B1*u1)+A1*A0*x0
+% xdev_History(:,3)
+% 
+% x_4=(A2*A1*B0*u0+A2*B1*u1+B2*u2)+A2*A1*A0*x0
+% xdev_History(:,4)
