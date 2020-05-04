@@ -1,6 +1,7 @@
+
 %initialization of model parameters
 
-global Ts Duration m_p m_c l_p alpha_1 alpha_2 g x_bound x_1_bound u_bound state0 state0_1;
+global Ts Duration m_p m_c l_p alpha_1 alpha_2 g x_bound x_1_bound u_bound state0 state0_1 b c;
 
 %Time parameters
 Ts = 0.1;           %Sampling time (seconds)
@@ -13,6 +14,8 @@ l_p = 0.28;         %distance from pivot to pendulum's center of mass (meters)
 alpha_1 = 159;      %motor constant 1 (voltage-to-force) (Newtons)
 alpha_2 = -22.5;    %%motor constant 2 (electrical resistance-to-force) (Newtons*second/meters)
 g = 9.81;           %gravitational constant (meters/second^2)
+b=m_c/m_p;
+c=((m_c+m_p)*g)/m_p;
 
 % Bounds
 x_bound = 0.5;      %bound due to finite rail length (meters)

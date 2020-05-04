@@ -1,18 +1,19 @@
 function [F,d0] = get_lifted_repr(xHistory,uHistory,x0_dev)
 
-N=size(xHistory,2);      %number of timesteps
+N=size(xHistory,2);      %number of timesteps, number of column of that xHistory
 
-%get jacobians
+%Computer jacobian at each step time instant 
+
 A=zeros(4,4,N);
 B=zeros(4,N);
 for ct=1:N
-    [nA,nB]=get_jacobians(xHistory(:,ct),uHistory(:,ct));
+    [nA,nB]=get_jacobians(xHistory(:,ct));
     A(:,:,ct)=nA;
     B(:,ct)=nB;
 end
 
 %compute F
-F=zeros(N*4,N);
+F=zeros(N*4,N);    % Get a Istant time*4, instant time matrix
 for m=1:N
     for l=1:N
         if m<l-1

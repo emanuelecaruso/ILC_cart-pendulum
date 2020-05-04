@@ -1,3 +1,4 @@
+clear all; close all; clc
 syms z z_dot theta theta_dot u        %variables
 syms g m_p m_c l_p alpha_1 alpha_2      %parameters
 
@@ -15,3 +16,6 @@ f=[f1;f2;f3;f4];
 %get jacobians
 A=jacobian(f,[z,z_dot,theta,theta_dot]);
 B=jacobian(f,u);
+
+A;
+B;

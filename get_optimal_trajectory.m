@@ -7,7 +7,7 @@ nlobj = nlmpc(nx, ny, nu);
 
 %Set sampling time, prediction and control horizon
 
-global Ts Duration;
+global Ts Duration; 
 
 nlobj.Ts = Ts;
 
@@ -36,8 +36,8 @@ nlobj.States(1).Max =  0.5;
 nlobj.States(2).Min = -5;
 nlobj.States(2).Max =  5;
 
-nlobj.MV.Min = -0.45;
-nlobj.MV.Max =  0.45;
+nlobj.MV.Min = -0.2;
+nlobj.MV.Max =  0.2;
 
 x0 = [0.1;0.2;-pi/2;0.3];
 u0 = 0.4;
@@ -65,7 +65,7 @@ for ct = 1:(Duration/Ts)
 
     % Correct previous prediction using current measurement 
     % Compute optimal control moves 
-    [mv,nloptions,info] = nlmpcmove(nlobj,x,mv,yref,[],nloptions);
+    [mv,nloptions] = nlmpcmove(nlobj,x,mv,yref,[],nloptions);
     % Predict prediction model states for the next iteration
     %predict(EKF, [mv; Ts]);
     %xk = x;
